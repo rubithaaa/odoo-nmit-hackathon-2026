@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYFLOW – Every Workday, Perfectly Aligned</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .landing-nav {
+      height: 76px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .landing-hero {
+      padding: 90px 24px 60px;
+      text-align: center;
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #818CF8;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+    .preview-container {
+      position: relative;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--bg-surface);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), var(--shadow-glow);
+      overflow: hidden;
+      margin-bottom: 100px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 100px;
+    }
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      margin-bottom: 20px;
+    }
+    .workflow-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin: 40px 0 80px;
+    }
+    .workflow-pill {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-medium);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .landing-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem; }
+      .landing-nav { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="landing-nav">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img src="assets/logo.svg" alt="Dayflow Logo" width="36" height="36">
+      <div class="brand-text">
+        <span class="brand-name">DAYFLOW</span>
+        <span class="brand-tag">HR OPERATING PLATFORM</span>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <a href="/login.html" class="btn btn-ghost">Sign In</a>
+      <a href="/login.html" class="btn btn-primary">Try Live Demo</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="landing-hero">
+    <div class="hero-badge">
+      <span class="live-dot"></span> Next-Generation Cloud HR Operating System
+    </div>
+    <h1 class="hero-title">
+      Every workday, <br><span class="text-gradient">perfectly aligned.</span>
+    </h1>
+    <p class="hero-desc">
+      A unified, frictionless platform transforming how modern teams experience work: from live attendance tracking and smart leaves to automated payroll visibility and calculated workforce intelligence.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="/login.html" class="btn btn-primary btn-lg">
+        Explore Demo Workspace →
+      </a>
+      <a href="#features" class="btn btn-secondary btn-lg">
+        Discover Features
+      </a>
+    </div>
+
+    <!-- Product Workflow Flow -->
+    <div class="workflow-strip">
+      <div class="workflow-pill"><span style="color:#6366F1;">01</span> Identity</div>
+      <span style="color:var(--text-muted); font-size:1.4rem;">→</span>
+      <div class="workflow-pill"><span style="color:#06B6D4;">02</span> Attendance</div>
+      <span style="color:var(--text-muted); font-size:1.4rem;">→</span>
+      <div class="workflow-pill"><span style="color:#10B981;">03</span> Leave</div>
+      <span style="color:var(--text-muted); font-size:1.4rem;">→</span>
+      <div class="workflow-pill"><span style="color:#F59E0B;">04</span> Payroll</div>
+      <span style="color:var(--text-muted); font-size:1.4rem;">→</span>
+      <div class="workflow-pill"><span style="color:#A855F7;">05</span> Insights</div>
+    </div>
+
+    <!-- Live Interactive Mockup Banner -->
+    <div class="preview-container">
+      <div style="background:var(--bg-secondary); padding:14px 20px; border-bottom:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between;">
+        <div style="display:flex; gap:8px;">
+          <span style="width:12px; height:12px; border-radius:50%; background:#EF4444;"></span>
+          <span style="width:12px; height:12px; border-radius:50%; background:#F59E0B;"></span>
+          <span style="width:12px; height:12px; border-radius:50%; background:#10B981;"></span>
+        </div>
+        <div style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">dayflow.app/workspace</div>
+        <div class="badge badge-success"><span class="live-dot"></span> Live Demo Ready</div>
+      </div>
+      <div style="padding:32px; text-align:left;">
+        <div class="pulse-hero-card" style="margin-bottom:0;">
+          <div class="pulse-header">
+            <div class="pulse-greeting">
+              <h2>Good morning, <span class="text-gradient">Alex</span> 👋</h2>
+              <p>Staff Full-Stack Architect • Engineering Team</p>
+            </div>
+            <div class="pulse-status-badge">
+              <span class="live-dot"></span> <strong>Dayflow Pulse Active</strong>
+            </div>
+          </div>
+          <div class="pulse-timer-grid">
+            <div class="timer-box">
+              <div class="timer-icon">⏱️</div>
+              <div class="timer-details">
+                <span class="timer-label">Today's Productive Work</span>
+                <span class="timer-val" style="color:#34D399;">06h 42m 18s</span>
+              </div>
+            </div>
+            <div class="timer-box">
+              <div class="timer-icon">☕</div>
+              <div class="timer-details">
+                <span class="timer-label">Breaks Logged</span>
+                <span class="timer-val">45 mins</span>
+              </div>
+            </div>
+            <div class="timer-box">
+              <div class="timer-icon">💰</div>
+              <div class="timer-details">
+                <span class="timer-label">Net Compensation</span>
+                <span class="timer-val" style="color:#818CF8;">$11,350 / mo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Core Features Section -->
+  <section id="features" class="page-container" style="padding-top:40px;">
+    <div style="text-align:center; margin-bottom:60px;">
+      <h2 style="font-size:2.4rem; font-weight:800; margin-bottom:12px;">Engineered for High-Performance Workforces</h2>
+      <p style="color:var(--text-secondary); font-size:1.1rem; max-width:600px; margin:0 auto;">
+        No cluttered spreadsheets. No outdated enterprise menus. Just fluid clarity.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <!-- Feature 1: Dayflow Pulse -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">DAYFLOW PULSE</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          A smart daily employee overview. Visualizes the exact flow of every workday: Morning → Check-in → Working → Break → Check-out → Summary.
+        </p>
+      </div>
+
+      <!-- Feature 2: Smart Leaves -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">Leave Command Center</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          1-click employee time-off requests with real-time balance deductions, approval workflows, team collision alerts, and instant manager reviews.
+        </p>
+      </div>
+
+      <!-- Feature 3: Transparent Payroll -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">Payroll & Printable Slips</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          Full itemized visibility over basic earnings, allowances, PF, and tax deductions. Generate and print official corporate salary slips with one tap.
+        </p>
+      </div>
+
+      <!-- Feature 4: Dayflow Insights -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">Calculated Intelligence</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          Real mathematical data models detecting department punctuality shifts, attendance anomalies, and leave velocity without fake AI claims.
+        </p>
+      </div>
+
+      <!-- Feature 5: Enterprise RBAC -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">Enterprise Security</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          JWT authentication, bcrypt password hashing, role-based endpoint authorization, and strict profile access boundaries.
+        </p>
+      </div>
+
+      <!-- Feature 6: Fast Global Search -->
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3 style="font-size:1.3rem; margin-bottom:10px;">Command Palette (Ctrl+K)</h3>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+          Keyboard-first productivity. Search employees, attendance records, leaves, payroll slips, and trigger actions in milliseconds.
+        </p>
+      </div>
+    </div>
+
+    <!-- Final Call to Action -->
+    <div class="card card-glass" style="padding:48px 32px; text-align:center; border-color:rgba(99,102,241,0.3); margin-bottom:80px;">
+      <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:12px;">Ready to Experience Dayflow?</h2>
+      <p style="color:var(--text-secondary); font-size:1.1rem; max-width:540px; margin:0 auto 28px;">
+        Test the complete platform with pre-configured demo accounts for HR and Employees.
+      </p>
+      <a href="/login.html" class="btn btn-primary btn-lg">Launch Live Demo Workspace →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:12px;">
+      <img src="assets/logo.svg" alt="Dayflow Logo" width="24" height="24">
+      <span style="font-weight:700; color:#FFFFFF;">DAYFLOW HRMS</span>
+    </div>
+    <p>Every workday, perfectly aligned. © 2026 Dayflow Team. MIT License.</p>
+  </footer>
+
+</body>
+</html>

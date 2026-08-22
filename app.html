@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYFLOW – Workspace</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <img src="assets/logo.svg" alt="Dayflow Logo" width="32" height="32">
+        <div class="brand-text">
+          <span class="brand-name">DAYFLOW</span>
+          <span class="brand-tag">HR OPERATING PLATFORM</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Operations</div>
+        
+        <div class="nav-item active" data-tab="pulse" onclick="App.switchTab('pulse')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Dayflow Pulse</span>
+        </div>
+
+        <div class="nav-item" data-tab="attendance" onclick="App.switchTab('attendance')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          <span>Attendance Hub</span>
+        </div>
+
+        <div class="nav-item" data-tab="leaves" onclick="App.switchTab('leaves')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+          <span>Leave Management</span>
+        </div>
+
+        <div class="nav-item" data-tab="payroll" onclick="App.switchTab('payroll')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Payroll & Slips</span>
+        </div>
+
+        <div class="nav-section-title admin-only-nav">HR Command Center</div>
+
+        <div class="nav-item admin-only-nav" data-tab="directory" onclick="App.switchTab('directory')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Employee Directory</span>
+        </div>
+
+        <div class="nav-item admin-only-nav" data-tab="insights" onclick="App.switchTab('insights')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Dayflow Insights</span>
+        </div>
+
+        <div class="nav-item admin-only-nav" data-tab="reports" onclick="App.switchTab('reports')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Analytics & Reports</span>
+        </div>
+
+        <div class="nav-section-title">Communication</div>
+
+        <div class="nav-item" data-tab="notifications" onclick="App.switchTab('notifications')">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span>Notifications</span>
+        </div>
+      </nav>
+
+      <!-- Sidebar User Footer -->
+      <div class="sidebar-footer">
+        <div class="user-profile-pill" onclick="App.switchTab('notifications')">
+          <img id="sidebarUserAvatar" class="user-avatar" src="" alt="User">
+          <div class="user-info">
+            <div id="sidebarUserName" class="user-name">Loading...</div>
+            <div id="sidebarUserRole" class="user-role-badge">Employee</div>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); App.logout();" title="Sign Out" style="padding:4px 6px;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Shell -->
+    <main class="app-main">
+      <!-- Top Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" onclick="App.toggleMobileSidebar()">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <h1 id="headerPageTitle" class="header-page-title">Dayflow Pulse</h1>
+        </div>
+
+        <div class="header-right">
+          <!-- Command Palette Trigger -->
+          <div class="search-trigger-btn" onclick="CommandPalette.open()">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Search anything...</span>
+            <span class="kbd-shortcut">Ctrl K</span>
+          </div>
+
+          <!-- Live Clock Pill -->
+          <div class="live-clock-pill">
+            <span class="live-dot"></span>
+            <span id="liveHeaderClock">--:--:--</span>
+          </div>
+
+          <!-- Notification Dropdown Button -->
+          <div style="position:relative;">
+            <button class="notification-bell-btn" onclick="NotificationsModule.toggleDropdown()" title="Notifications">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span id="notifUnreadBadge" class="unread-badge" style="display:none;">0</span>
+            </button>
+
+            <!-- Dropdown Popover -->
+            <div id="notifDropdown" class="modal-card" style="position:absolute; top:48px; right:0; width:340px; display:none; z-index:60; border-color:var(--border-medium); box-shadow:var(--shadow-lg);">
+              <div style="padding:12px 16px; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-weight:700; font-size:0.9rem;">Notifications</span>
+                <button class="btn btn-ghost btn-sm" onclick="NotificationsModule.markAllRead()" style="font-size:0.75rem;">Mark all read</button>
+              </div>
+              <div id="notifDropdownList" style="max-height:300px; overflow-y:auto;"></div>
+              <div style="padding:8px; text-align:center; border-top:1px solid var(--border-subtle); background:rgba(0,0,0,0.15);">
+                <button class="btn btn-ghost btn-sm" onclick="App.switchTab('notifications'); NotificationsModule.toggleDropdown();" style="width:100%;">View All in Notification Center</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content Area -->
+      <div class="page-container">
+
+        <!-- ================================================================= -->
+        <!-- VIEW 1: DAYFLOW PULSE (Unique Product Experience)                -->
+        <!-- ================================================================= -->
+        <section id="view-pulse" class="view-section">
+          
+          <!-- Employee Hero Experience -->
+          <div class="pulse-hero-card">
+            <div class="pulse-header">
+              <div class="pulse-greeting">
+                <h2 id="pulseGreetingTitle">Good morning, Staff 👋</h2>
+                <p id="pulseGreetingSubtitle">Loading your daily workspace rhythm...</p>
+              </div>
+              <div id="pulseStatusPill" class="pulse-status-badge">
+                <span class="live-dot"></span> Not Checked In
+              </div>
+            </div>
+
+            <!-- Live Timer Stat Cards -->
+            <div class="pulse-timer-grid">
+              <div class="timer-box">
+                <div class="timer-icon">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="timer-details">
+                  <span class="timer-label">Check-In Punch</span>
+                  <span id="pulseCheckInTime" class="timer-val">--:-- --</span>
+                </div>
+              </div>
+
+              <div class="timer-box">
+                <div class="timer-icon" style="background:rgba(16,185,129,0.12); color:var(--accent-emerald);">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <div class="timer-details">
+                  <span class="timer-label">Live Active Work Timer</span>
+                  <span id="pulseLiveTimer" class="timer-val" style="color:#34D399;">00:00:00</span>
+                </div>
+              </div>
+
+              <div class="timer-box">
+                <div class="timer-icon" style="background:rgba(6,182,212,0.12); color:var(--accent-cyan);">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                </div>
+                <div class="timer-details">
+                  <span class="timer-label">Breaks Logged</span>
+                  <span id="pulseBreakStatus" class="timer-val">0 mins</span>
+                </div>
+              </div>
+
+              <div class="timer-box">
+                <div class="timer-icon" style="background:rgba(168,85,247,0.12); color:var(--accent-purple);">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="timer-details">
+                  <span class="timer-label">Check-Out Punch</span>
+                  <span id="pulseCheckOutTime" class="timer-val">--:-- --</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- "Today's Flow" Visual Workday Timeline -->
+            <div class="pulse-timeline-section">
+              <div class="timeline-title">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Today's Flow Timeline
+              </div>
+              <div class="flow-timeline">
+                <div class="timeline-track">
+                  <div id="pulseProgressTrack" class="timeline-progress" style="width:0%;"></div>
+                </div>
+
+                <div id="stepMorning" class="flow-step completed">
+                  <div class="step-node">01</div>
+                  <span class="step-label">Morning</span>
+                  <span class="step-time">Start of Day</span>
+                </div>
+
+                <div id="stepCheckIn" class="flow-step">
+                  <div class="step-node">02</div>
+                  <span class="step-label">Check In</span>
+                  <span class="step-time">Office / Remote</span>
+                </div>
+
+                <div id="stepWorking" class="flow-step">
+                  <div class="step-node">03</div>
+                  <span class="step-label">Working</span>
+                  <span class="step-time">Focus & Build</span>
+                </div>
+
+                <div id="stepBreak" class="flow-step">
+                  <div class="step-node">04</div>
+                  <span class="step-label">Break / Activity</span>
+                  <span class="step-time">Lunch & Rest</span>
+                </div>
+
+                <div id="stepCheckOut" class="flow-step">
+                  <div class="step-node">05</div>
+                  <span class="step-label">Check Out</span>
+                  <span class="step-time">Wrap Up</span>
+                </div>
+
+                <div id="stepSummary" class="flow-step">
+                  <div class="step-node">06</div>
+                  <span class="step-label">Summary</span>
+                  <span class="step-time">Logged & Aligned</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="pulse-action-bar">
+              <button id="btnPulseCheckIn" class="btn btn-primary btn-lg" onclick="Pulse.handleCheckIn()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                Punch In Now
+              </button>
+
+              <button id="btnPulseBreak" class="btn btn-secondary btn-lg" style="display:none;" onclick="Pulse.handleBreakToggle()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                Take Break
+              </button>
+
+              <button id="btnPulseCheckOut" class="btn btn-danger btn-lg" style="display:none;" onclick="Pulse.handleCheckOut()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Finish Workday & Check Out
+              </button>
+
+              <button class="btn btn-secondary btn-lg" onclick="LeavesModule.openApplyModal()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+                Quick Request Leave
+              </button>
+            </div>
+          </div>
+
+          <!-- HR Admin Command Center Summary Grid (Admin only) -->
+          <div class="admin-only-view">
+            <!-- Needs Attention Intelligent Alert Feed -->
+            <div class="needs-attention-box">
+              <div class="needs-attention-header">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span>HR Command Center • Operational Triage & Attention Items</span>
+              </div>
+              <div id="needsAttentionList" class="attention-list">
+                <div class="attention-item">Loading operational alerts...</div>
+              </div>
+            </div>
+
+            <!-- Executive KPI Cards -->
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header">
+                  <span class="metric-title">Present Today</span>
+                  <div class="metric-icon" style="color:var(--accent-emerald);"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <div id="kpiAdminPresent" class="metric-value" style="color:#34D399;">--</div>
+                <div class="metric-sub">Staff on clock</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-header">
+                  <span class="metric-title">Absent Today</span>
+                  <div class="metric-icon" style="color:var(--accent-rose);"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+                </div>
+                <div id="kpiAdminAbsent" class="metric-value" style="color:#FB7185;">--</div>
+                <div class="metric-sub">Unscheduled absences</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-header">
+                  <span class="metric-title">On Approved Leave</span>
+                  <div class="metric-icon" style="color:var(--accent-cyan);"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></div>
+                </div>
+                <div id="kpiAdminOnLeave" class="metric-value" style="color:#38BDF8;">--</div>
+                <div class="metric-sub">Scheduled time-off</div>
+              </div>
+
+              <div class="metric-card">
+                <div class="metric-header">
+                  <span class="metric-title">Pending Leave Reviews</span>
+                  <div class="metric-icon" style="color:var(--accent-amber);"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                </div>
+                <div id="kpiAdminPendingLeaves" class="metric-value" style="color:#FBBF24;">--</div>
+                <div class="metric-sub">Requests in triage</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Shortcuts Row -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px;">
+            <div class="card" style="cursor:pointer;" onclick="App.switchTab('leaves')">
+              <div class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+                <span>Leave Hub</span>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.88rem;">Check time-off balances, request holidays, or review team submissions.</p>
+            </div>
+
+            <div class="card" style="cursor:pointer;" onclick="App.switchTab('payroll')">
+              <div class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Compensation & Slips</span>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.88rem;">Access monthly payslips, basic earnings, deductions, and tax withholdings.</p>
+            </div>
+
+            <div class="card" style="cursor:pointer;" onclick="App.switchTab('notifications')">
+              <div class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <span>Announcements</span>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.88rem;">Stay updated on company-wide news, events, and HR policy notifications.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 2: ATTENDANCE HUB                                            -->
+        <!-- ================================================================= -->
+        <section id="view-attendance" class="view-section" style="display:none;">
+          <!-- Employee Attendance View -->
+          <div class="employee-only-view">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Monthly Attendance Rate</span></div>
+                <div id="empAttendanceRate" class="metric-value" style="color:#34D399;">--%</div>
+                <div class="metric-sub">Benchmark: 95%+</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Days Present</span></div>
+                <div id="empPresentDays" class="metric-value">-- Days</div>
+                <div class="metric-sub">This cycle</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Late Arrivals</span></div>
+                <div id="empLateDays" class="metric-value" style="color:#FBBF24;">-- Days</div>
+                <div class="metric-sub">Punched after 09:30 AM</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Total Hours Logged</span></div>
+                <div id="empTotalHours" class="metric-value" style="color:#818CF8;">-- hrs</div>
+                <div class="metric-sub">Productive work time</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">My Attendance History</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Work Time</th>
+                      <th>Break Time</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="empAttendanceTableBody">
+                    <tr><td colspan="6" class="text-center" style="padding:20px;">Loading logs...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- HR Admin Attendance View -->
+          <div class="admin-only-view">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Active Workforce</span></div>
+                <div id="adminTotalEmployees" class="metric-value">--</div>
+                <div class="metric-sub">Total team members</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Present Today</span></div>
+                <div id="adminPresentToday" class="metric-value" style="color:#34D399;">--</div>
+                <div class="metric-sub">On-clock presence</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Late Arrivals</span></div>
+                <div id="adminLateToday" class="metric-value" style="color:#FBBF24;">--</div>
+                <div class="metric-sub">Arrived after 09:30 AM</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Unexcused Absent</span></div>
+                <div id="adminAbsentToday" class="metric-value" style="color:#FB7185;">--</div>
+                <div class="metric-sub">No check-in or leave</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Attendance Rate</span></div>
+                <div id="adminAttendanceRate" class="metric-value" style="color:#818CF8;">--%</div>
+                <div class="metric-sub">Company punctuality</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Workforce Attendance Hub</h3>
+                <!-- Filters -->
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <input type="date" id="filterAttDate" class="form-control" style="width:auto;" onchange="AttendanceModule.loadAdminAttendance()">
+                  <select id="filterAttDept" class="form-control" style="width:auto;" onchange="AttendanceModule.loadAdminAttendance()">
+                    <option value="All">All Departments</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Design">Design</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Human Resources">Human Resources</option>
+                  </select>
+                  <select id="filterAttStatus" class="form-control" style="width:auto;" onchange="AttendanceModule.loadAdminAttendance()">
+                    <option value="All">All Statuses</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Half-day">Half-day</option>
+                    <option value="On Leave">On Leave</option>
+                  </select>
+                  <input type="text" id="filterAttSearch" class="form-control" placeholder="Search employee..." style="width:200px;" oninput="AttendanceModule.loadAdminAttendance()">
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Date</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Work Hours</th>
+                      <th>Status</th>
+                      <th>Mode</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminAttendanceTableBody">
+                    <tr><td colspan="7" class="text-center" style="padding:20px;">Loading attendance roster...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 3: LEAVE MANAGEMENT                                          -->
+        <!-- ================================================================= -->
+        <section id="view-leaves" class="view-section" style="display:none;">
+          <!-- Employee Leave Experience -->
+          <div class="employee-only-view">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+              <div>
+                <h2 style="font-size:1.5rem; font-weight:700;">Leave Balances & Time-Off</h2>
+                <p style="color:var(--text-secondary); font-size:0.9rem;">Review available PTO days and track review statuses.</p>
+              </div>
+              <button class="btn btn-primary btn-lg" onclick="LeavesModule.openApplyModal()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Apply for Leave
+              </button>
+            </div>
+
+            <!-- Balances Row -->
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Paid Annual Leave</span></div>
+                <div id="leavePaidRemaining" class="metric-value" style="color:#34D399;">-- / 18 Days</div>
+                <div class="metric-sub">Remaining balance</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Sick & Medical Leave</span></div>
+                <div id="leaveSickRemaining" class="metric-value" style="color:#38BDF8;">-- / 12 Days</div>
+                <div class="metric-sub">Remaining balance</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Casual Leave</span></div>
+                <div id="leaveCasualRemaining" class="metric-value" style="color:#C084FC;">-- / 6 Days</div>
+                <div class="metric-sub">Remaining balance</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Unpaid Leave</span></div>
+                <div id="leaveUnpaidUsed" class="metric-value" style="color:var(--text-muted);">-- Days Taken</div>
+                <div class="metric-sub">Discretionary time off</div>
+              </div>
+            </div>
+
+            <!-- Employee Requests Container -->
+            <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:14px;">My Submitted Requests</h3>
+            <div id="empLeaveCardsContainer">
+              <div class="empty-state card">Loading submitted leave requests...</div>
+            </div>
+          </div>
+
+          <!-- HR Admin Leave Command Center -->
+          <div class="admin-only-view">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Pending Approvals</span></div>
+                <div id="adminPendingLeavesCount" class="metric-value" style="color:#FBBF24;">--</div>
+                <div class="metric-sub">Requires triage</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Approved Leaves</span></div>
+                <div id="adminApprovedLeavesCount" class="metric-value" style="color:#34D399;">--</div>
+                <div class="metric-sub">Scheduled time off</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Rejected Requests</span></div>
+                <div id="adminRejectedLeavesCount" class="metric-value" style="color:#FB7185;">--</div>
+                <div class="metric-sub">Declined submissions</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Total Requests</span></div>
+                <div id="adminTotalLeavesCount" class="metric-value">--</div>
+                <div class="metric-sub">All-time record</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Leave Command Center</h3>
+                <!-- Filters -->
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <select id="filterLeaveStatus" class="form-control" style="width:auto;" onchange="LeavesModule.loadAdminLeaves()">
+                    <option value="All">All Statuses</option>
+                    <option value="Pending" selected>Pending Review</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <select id="filterLeaveType" class="form-control" style="width:auto;" onchange="LeavesModule.loadAdminLeaves()">
+                    <option value="All">All Types</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Sick">Sick</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Unpaid">Unpaid</option>
+                  </select>
+                  <input type="text" id="filterLeaveSearch" class="form-control" placeholder="Search applicant/reason..." style="width:200px;" oninput="LeavesModule.loadAdminLeaves()">
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Type</th>
+                      <th>Dates</th>
+                      <th>Days</th>
+                      <th>Reason</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminLeavesTableBody">
+                    <tr><td colspan="7" class="text-center" style="padding:20px;">Loading leaves...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 4: PAYROLL & COMPENSATION                                    -->
+        <!-- ================================================================= -->
+        <section id="view-payroll" class="view-section" style="display:none;">
+          <!-- Employee Payroll View -->
+          <div class="employee-only-view">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Gross Earnings</span></div>
+                <div id="empPayrollGross" class="metric-value">$0</div>
+                <div class="metric-sub">Base + allowances & bonus</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Total Deductions</span></div>
+                <div id="empPayrollDeductions" class="metric-value" style="color:#FB7185;">-$0</div>
+                <div class="metric-sub">PF + Taxes & Insurance</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Net Take-Home</span></div>
+                <div id="empPayrollNet" class="metric-value" style="color:#34D399;">$0</div>
+                <div class="metric-sub">Direct Deposit to Account</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Latest Period</span></div>
+                <div id="empPayrollPeriod" class="metric-value" style="font-size:1.4rem;">--</div>
+                <div class="metric-sub">Disbursed</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Salary Slips & Disbursement History</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Pay Period</th>
+                      <th>Gross Earnings</th>
+                      <th>Deductions</th>
+                      <th>Net Take-Home</th>
+                      <th>Status</th>
+                      <th>Payslip Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="empPayrollTableBody">
+                    <tr><td colspan="6" class="text-center" style="padding:20px;">Loading salary slips...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- HR Admin Payroll View -->
+          <div class="admin-only-view">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+              <div>
+                <h2 style="font-size:1.5rem; font-weight:700;">Company Payroll Management</h2>
+                <p style="color:var(--text-secondary); font-size:0.9rem;">Review disbursements, generate batch compensation, and export salary slips.</p>
+              </div>
+              <button class="btn btn-primary btn-lg" onclick="PayrollModule.generateBatch()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Generate Monthly Batch
+              </button>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Total Gross Payroll</span></div>
+                <div id="adminTotalPayrollGross" class="metric-value">$0</div>
+                <div class="metric-sub">Total monthly liability</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Total Deductions</span></div>
+                <div id="adminTotalPayrollDeductions" class="metric-value" style="color:#FB7185;">-$0</div>
+                <div class="metric-sub">Withheld taxes & PF</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Net Disbursement</span></div>
+                <div id="adminTotalPayrollNet" class="metric-value" style="color:#34D399;">$0</div>
+                <div class="metric-sub">Net transferred to staff</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-header"><span class="metric-title">Processed Slips</span></div>
+                <div id="adminProcessedPayrollCount" class="metric-value">0</div>
+                <div class="metric-sub">Active records</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Employee Salary Records</h3>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <select id="filterPayrollMonth" class="form-control" style="width:auto;" onchange="PayrollModule.loadAdminPayroll()">
+                    <option value="All">All Months</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                  <input type="text" id="filterPayrollSearch" class="form-control" placeholder="Search employee..." style="width:200px;" oninput="PayrollModule.loadAdminPayroll()">
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Pay Period</th>
+                      <th>Gross Earnings</th>
+                      <th>Deductions</th>
+                      <th>Net Take-Home</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminPayrollTableBody">
+                    <tr><td colspan="7" class="text-center" style="padding:20px;">Loading payroll records...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 5: EMPLOYEE DIRECTORY (HR Admin Only)                        -->
+        <!-- ================================================================= -->
+        <section id="view-directory" class="view-section admin-only-view" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <div>
+              <h2 style="font-size:1.5rem; font-weight:700;">Employee Directory</h2>
+              <p style="color:var(--text-secondary); font-size:0.9rem;">Manage team roster, roles, profiles, and employment statuses.</p>
+            </div>
+            <button class="btn btn-primary btn-lg" onclick="DirectoryModule.openAddModal()">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add New Employee
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Staff Roster</h3>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <select id="filterDirDept" class="form-control" style="width:auto;" onchange="DirectoryModule.loadDirectory()">
+                  <option value="All">All Departments</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Design">Design</option>
+                  <option value="Product">Product</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Human Resources">Human Resources</option>
+                </select>
+                <select id="filterDirStatus" class="form-control" style="width:auto;" onchange="DirectoryModule.loadDirectory()">
+                  <option value="All">All Statuses</option>
+                  <option value="Active">Active</option>
+                  <option value="On Leave">On Leave</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+                <input type="text" id="filterDirSearch" class="form-control" placeholder="Search by name, ID, email..." style="width:240px;" oninput="DirectoryModule.loadDirectory()">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>ID</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Attendance</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="directoryTableBody">
+                  <tr><td colspan="7" class="text-center" style="padding:20px;">Loading directory...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 6: DAYFLOW INSIGHTS (HR Admin Only)                          -->
+        <!-- ================================================================= -->
+        <section id="view-insights" class="view-section admin-only-view" style="display:none;">
+          <div style="margin-bottom:24px;">
+            <div class="hero-badge">
+              <span class="live-dot"></span> Mathematical Workforce Analytics
+            </div>
+            <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:6px;">DAYFLOW INSIGHTS</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">
+              Calculated automatically from real database logs. Actionable intelligence on team punctuality, attendance shifts, and leave velocity.
+            </p>
+          </div>
+
+          <div id="insightsGridContainer" class="insights-grid">
+            <div class="card">Loading insights...</div>
+          </div>
+
+          <!-- Department Rankings Section -->
+          <div class="card" style="margin-top:24px;">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                Department Punctuality & Engagement Rankings
+              </h3>
+            </div>
+            <div id="insightsDeptRankingsContainer" style="padding:10px 0;">
+              Loading department performance...
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 7: ANALYTICS & REPORTS (HR Admin Only)                       -->
+        <!-- ================================================================= -->
+        <section id="view-reports" class="view-section admin-only-view" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <div>
+              <h2 style="font-size:1.5rem; font-weight:700;">Executive Reports & Data Export</h2>
+              <p style="color:var(--text-secondary); font-size:0.9rem;">Generate audit-ready datasets and export to CSV or Print.</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-secondary" onclick="window.print()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print Report
+              </button>
+              <button class="btn btn-primary" onclick="ReportsModule.exportCSV()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export to CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Report Tabs -->
+          <div style="display:flex; gap:8px; margin-bottom:20px; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
+            <button class="btn btn-secondary report-tab-btn active" data-tab="attendance" onclick="ReportsModule.switchReportTab('attendance')">Attendance Report</button>
+            <button class="btn btn-secondary report-tab-btn" data-tab="leaves" onclick="ReportsModule.switchReportTab('leaves')">Leave Report</button>
+            <button class="btn btn-secondary report-tab-btn" data-tab="payroll" onclick="ReportsModule.switchReportTab('payroll')">Payroll Report</button>
+            <button class="btn btn-secondary report-tab-btn" data-tab="employees" onclick="ReportsModule.switchReportTab('employees')">Employee Master Report</button>
+          </div>
+
+          <div class="card" id="reportTableContainer">
+            <div class="card-header">
+              <h3 class="card-title">Generated Report Dataset</h3>
+              <div style="display:flex; gap:10px;">
+                <select id="reportFilterDept" class="form-control" style="width:auto;" onchange="ReportsModule.generateReport()">
+                  <option value="All">All Departments</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Design">Design</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Human Resources">Human Resources</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead id="reportTableHead"></thead>
+                <tbody id="reportTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 8: NOTIFICATION CENTER                                       -->
+        <!-- ================================================================= -->
+        <section id="view-notifications" class="view-section" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <div>
+              <h2 style="font-size:1.5rem; font-weight:700;">Notification & Announcement Center</h2>
+              <p style="color:var(--text-secondary); font-size:0.9rem;">Company-wide broadcasts, leave decisions, and system alerts.</p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-secondary" onclick="NotificationsModule.markAllRead()">
+                Mark All Read
+              </button>
+              <button class="btn btn-primary admin-only-nav" onclick="NotificationsModule.openBroadcastModal()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                Broadcast Announcement
+              </button>
+            </div>
+          </div>
+
+          <div id="fullNotificationsList">
+            <div class="card">Loading notifications...</div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- MODALS & DIALOGS                                                  -->
+  <!-- ================================================================= -->
+
+  <!-- 1. Apply Leave Modal -->
+  <div id="applyLeaveModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;">Apply for Leave</h3>
+        <button class="btn btn-ghost btn-sm" onclick="LeavesModule.closeApplyModal()">✕</button>
+      </div>
+      <form id="applyLeaveForm" onsubmit="LeavesModule.handleApplySubmit(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="applyLeaveType">Leave Category</label>
+            <select id="applyLeaveType" class="form-control" required>
+              <option value="Paid">Paid Annual Leave</option>
+              <option value="Sick">Sick & Medical Leave</option>
+              <option value="Casual">Casual Leave</option>
+              <option value="Unpaid">Unpaid Leave</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="applyStartDate">Start Date</label>
+              <input type="date" id="applyStartDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="applyEndDate">End Date</label>
+              <input type="date" id="applyEndDate" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="applyReason">Reason for Request</label>
+            <textarea id="applyReason" class="form-control" rows="3" placeholder="Provide context for HR review..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="LeavesModule.closeApplyModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Review Leave Modal (Admin) -->
+  <div id="reviewLeaveModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="reviewModalTitle" style="font-size:1.2rem;">Review Leave Request</h3>
+        <button class="btn btn-ghost btn-sm" onclick="LeavesModule.closeReviewModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="reviewModalDetails" style="color:var(--text-secondary); margin-bottom:16px; font-size:0.95rem;"></p>
+        <div class="form-group">
+          <label class="form-label" for="reviewCommentInput">Reviewer Comments / Note</label>
+          <textarea id="reviewCommentInput" class="form-control" rows="2" placeholder="e.g. Approved. Project coverage confirmed."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="LeavesModule.handleReviewAction('Rejected')">Reject Request</button>
+        <button type="button" class="btn btn-success" onclick="LeavesModule.handleReviewAction('Approved')">Approve Request</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Official Salary Slip Modal -->
+  <div id="payslipModal" class="modal-overlay">
+    <div class="modal-card" style="max-width:850px;">
+      <div class="modal-header no-print">
+        <h3 style="font-size:1.2rem;">Official Employee Salary Slip</h3>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary btn-sm" onclick="PayrollModule.printPayslip()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print / Export PDF
+          </button>
+          <button class="btn btn-ghost btn-sm" onclick="PayrollModule.closePayslipModal()">✕</button>
+        </div>
+      </div>
+      <div class="modal-body" id="payslipModalBody">
+        <!-- Rendered dynamically by payroll.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Profile View Modal -->
+  <div id="profileViewModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;">Employee Profile</h3>
+        <button class="btn btn-ghost btn-sm" onclick="DirectoryModule.closeProfileModal()">✕</button>
+      </div>
+      <div class="modal-body" id="profileViewModalBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="DirectoryModule.closeProfileModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Edit Profile Modal -->
+  <div id="editProfileModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;">Edit Employee Profile</h3>
+        <button class="btn btn-ghost btn-sm" onclick="DirectoryModule.closeEditModal()">✕</button>
+      </div>
+      <form onsubmit="DirectoryModule.handleSaveEdit(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="editEmpFullName">Full Name</label>
+            <input type="text" id="editEmpFullName" class="form-control" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="editEmpPhone">Phone Number</label>
+              <input type="text" id="editEmpPhone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editEmpCity">City</label>
+              <input type="text" id="editEmpCity" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="editEmpEmergencyName">Emergency Contact Name</label>
+              <input type="text" id="editEmpEmergencyName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editEmpEmergencyPhone">Emergency Phone</label>
+              <input type="text" id="editEmpEmergencyPhone" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="editEmpDept">Department</label>
+              <select id="editEmpDept" class="form-control">
+                <option value="Engineering">Engineering</option>
+                <option value="Design">Design</option>
+                <option value="Product">Product</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Human Resources">Human Resources</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="editEmpDesig">Designation</label>
+              <input type="text" id="editEmpDesig" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editEmpStatus">Account Status</label>
+            <select id="editEmpStatus" class="form-control">
+              <option value="Active">Active</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="DirectoryModule.closeEditModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Add Employee Modal (Admin) -->
+  <div id="addEmployeeModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;">Add New Employee</h3>
+        <button class="btn btn-ghost btn-sm" onclick="DirectoryModule.closeAddModal()">✕</button>
+      </div>
+      <form id="addEmployeeForm" onsubmit="DirectoryModule.handleAddSubmit(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="addEmpId">Employee ID</label>
+              <input type="text" id="addEmpId" class="form-control" placeholder="e.g. DF-1005" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addEmpFullName">Full Name</label>
+              <input type="text" id="addEmpFullName" class="form-control" placeholder="e.g. Elena Rostova" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="addEmpEmail">Work Email</label>
+            <input type="email" id="addEmpEmail" class="form-control" placeholder="elena@company.com" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="addEmpDept">Department</label>
+              <select id="addEmpDept" class="form-control">
+                <option value="Engineering">Engineering</option>
+                <option value="Design">Design</option>
+                <option value="Product">Product</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Human Resources">Human Resources</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addEmpDesig">Designation</label>
+              <input type="text" id="addEmpDesig" class="form-control" placeholder="e.g. Frontend Engineer" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="addEmpSalary">Base Salary ($/mo)</label>
+              <input type="number" id="addEmpSalary" class="form-control" placeholder="e.g. 6000" value="6000">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="addEmpRole">Role</label>
+              <select id="addEmpRole" class="form-control">
+                <option value="employee">Employee</option>
+                <option value="admin">HR / Admin</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="DirectoryModule.closeAddModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. Broadcast Announcement Modal (Admin) -->
+  <div id="broadcastAnnouncementModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;">Broadcast Company Announcement</h3>
+        <button class="btn btn-ghost btn-sm" onclick="NotificationsModule.closeBroadcastModal()">✕</button>
+      </div>
+      <form id="broadcastAnnouncementForm" onsubmit="NotificationsModule.handleBroadcastSubmit(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="broadcastTitle">Announcement Headline</label>
+            <input type="text" id="broadcastTitle" class="form-control" placeholder="e.g. Office Holiday Notice / Townhall Meeting" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="broadcastDept">Target Audience</label>
+            <select id="broadcastDept" class="form-control">
+              <option value="All">All Employees (Company-wide)</option>
+              <option value="Engineering">Engineering Only</option>
+              <option value="Design">Design Only</option>
+              <option value="Marketing">Marketing Only</option>
+              <option value="Human Resources">Human Resources Only</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="broadcastMessage">Message Content</label>
+            <textarea id="broadcastMessage" class="form-control" rows="4" placeholder="Type announcement details..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="NotificationsModule.closeBroadcastModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Announcement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. Command Palette Modal (Ctrl + K) -->
+  <div id="commandPaletteModal" class="modal-overlay" onclick="if(event.target===this) CommandPalette.close()">
+    <div class="cmd-palette-card">
+      <div class="cmd-input-wrap">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="cmdPaletteInput" class="cmd-input" placeholder="Type a command or search employees...">
+        <span class="kbd-shortcut">ESC</span>
+      </div>
+      <div id="cmdPaletteResults" class="cmd-results"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Client-Side Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/pulse.js"></script>
+  <script src="js/attendance.js"></script>
+  <script src="js/leaves.js"></script>
+  <script src="js/payroll.js"></script>
+  <script src="js/directory.js"></script>
+  <script src="js/insights.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/commandPalette.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
