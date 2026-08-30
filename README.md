@@ -109,7 +109,7 @@ npm start
 npm run dev
 ```
 
-### 5. Access Dayflow in Your Browser
+### 5. Access Dayflow in Your own Browser
 * 🌐 **Public Landing Page**: [http://localhost:5000](http://localhost:5000)
 * 🔐 **Login & Demo Switcher**: [http://localhost:5000/login.html](http://localhost:5000/login.html)
 * 💻 **Application Workspace**: [http://localhost:5000/app.html](http://localhost:5000/app.html)
@@ -293,4 +293,4 @@ When presenting Dayflow to judges, recruiters, or stakeholders, follow this reco
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the (LICENSE) file for details.
